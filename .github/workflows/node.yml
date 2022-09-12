@@ -64,7 +64,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_EC2_METADATA_DISABLED: true
+        AWS_EC2_METADATA_DISABLED: true # Reason: https://notestoself.dev/posts/github-action-s3-botocore-awsrequest-process-255-error/
       run: |
         aws s3 sync src/frontend/cloud-resume-app/dist/cloud-resume-app/ s3://schurteb-cloud-resume-challenge-bucket/
 
