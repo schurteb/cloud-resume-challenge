@@ -29,18 +29,26 @@ jobs:
     # Sets up the node.js environment's
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
+      #working-directory: "src/frontend/cloud-resume-app"
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: src/frontend/cloud-resume-app/package-lock.json
     
     # Installs dependencies
     - name: Install dependencies
-      run: npm ci
+      run: |
+        cd src/frontend/cloud-resume-app
+        npm ci
 
     # Runs the build
     - name: Build
-      run: npm run build --if-present
+      run: |
+        cd src/frontend/cloud-resume-app
+        npm run build --if-present
 
     # Runs npm tests on the project
     - name: Test
-      run: npm test
+      run: |
+        cd src/frontend/cloud-resume-app
+        npm test
