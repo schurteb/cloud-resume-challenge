@@ -51,4 +51,4 @@ jobs:
     - name: Test
       run: |
         cd src/frontend/cloud-resume-app
-        npm test
+        npm test -- --watch=false --browsers=ChromeHeadless
