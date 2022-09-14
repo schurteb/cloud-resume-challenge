@@ -86,7 +86,7 @@ resource "aws_acm_certificate" "certificate_resume_cf_distro" {
   tags = merge(
     var.default_tags,
     tomap({
-      Name = "${var.name}-public-site",
+      Name = "${var.name}-cert",
     })
   )
 
