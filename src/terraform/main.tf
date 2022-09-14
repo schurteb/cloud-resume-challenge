@@ -78,3 +78,22 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution_public_site" {
     minimum_protocol_version       = "TLSv1"
   }
 }
+
+resource "aws_acm_certificate" "certificate_resume_cf_distro" {
+  domain_name       = "resume.schurteb.ch"
+  validation_method = "DNS"
+  subject_alternative_names = [
+    aws_cloudfront_distribution.cloudfront_distribution_public_site.domain_name
+  ]
+
+  tags = merge(
+    var.default_tags,
+    tomap({
+      Name = "${var.name}-public-site",
+    })
+  )
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
