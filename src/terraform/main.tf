@@ -76,6 +76,7 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution_public_site" {
   viewer_certificate {
     minimum_protocol_version       = "TLSv1"
     acm_certificate_arn = aws_acm_certificate.certificate_resume_cf_distro.arn
+    ssl_support_method = "sni-only"
   }
 }
 
