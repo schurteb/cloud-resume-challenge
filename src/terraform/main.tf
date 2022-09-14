@@ -75,23 +75,7 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution_public_site" {
 
   viewer_certificate {
     minimum_protocol_version       = "TLSv1"
-    acm_certificate_arn = aws_acm_certificate.certificate_resume_cf_distro.arn
+    acm_certificate_arn = "arn:aws:acm:us-east-1:420018626735:certificate/d6e6e836-cc21-418f-9cfd-b34c496d9965"
     ssl_support_method = "sni-only"
-  }
-}
-
-resource "aws_acm_certificate" "certificate_resume_cf_distro" {
-  domain_name       = "resume.schurteb.ch"
-  validation_method = "DNS"
-
-  tags = merge(
-    var.default_tags,
-    tomap({
-      Name = "${var.name}-cert",
-    })
-  )
-
-  lifecycle {
-    create_before_destroy = true
   }
 }
