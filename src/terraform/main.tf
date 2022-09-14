@@ -43,6 +43,10 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution_public_site" {
   http_version        = "http2"
   is_ipv6_enabled     = "true"
 
+  aliases = [
+    "resume.schurteb.ch"
+  ]
+
   origin {
     domain_name = aws_s3_bucket.schurteb-cloud-resume-challenge-bucket.bucket_regional_domain_name
     origin_id   = aws_s3_bucket.schurteb-cloud-resume-challenge-bucket.bucket_regional_domain_name
@@ -70,7 +74,23 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution_public_site" {
   )
 
   viewer_certificate {
-    cloudfront_default_certificate = "true"
     minimum_protocol_version       = "TLSv1"
+    acm_certificate_arn = aws_acm_certificate.certificate_resume_cf_distro.arn
+  }
+}
+
+resource "aws_acm_certificate" "certificate_resume_cf_distro" {
+  domain_name       = "resume.schurteb.ch"
+  validation_method = "DNS"
+
+  tags = merge(
+    var.default_tags,
+    tomap({
+      Name = "${var.name}-cert",
+    })
+  )
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
