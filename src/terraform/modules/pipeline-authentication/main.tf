@@ -17,7 +17,6 @@ resource "aws_iam_openid_connect_provider" "oidc_provider_github" {
 
   tags = merge(var.default_tags, tomap({
     "Name" = "Identity provider github.com"
-    "HRZN-Name" = "Identity provider github.com"
     "Desc" = "Identity provider for access from github.com CI/CD pipelines"
   }))
 }
@@ -54,7 +53,6 @@ resource "aws_iam_role" "pipeline_role" {
 
   tags = merge(var.default_tags, tomap({
     "Name" = "CICDRole"
-    "HRZN-Name" = "CICDRole"
     "Desc" = "AWS IAM role to be used within pipeline."
   }))
 }
