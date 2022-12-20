@@ -71,7 +71,8 @@ resource "aws_iam_policy" "pipeline_access_policy" {
         "iam:*",
         "kms:*",
         "s3:*",
-        "dynamodb:*"
+        "dynamodb:*",
+        "cloudfront:*"
       ],
       "Resource": "*"
     },
