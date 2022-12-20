@@ -24,6 +24,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    # Get AWS credentials
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::420018626735:role/cicdrole
+        aws-region: eu-central-1
+
     # Install the latest version of Terraform CLI
     - name: Install Terraform
       env:
