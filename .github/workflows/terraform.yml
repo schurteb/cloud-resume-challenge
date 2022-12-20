@@ -32,10 +32,6 @@ jobs:
         role-to-assume: arn:aws:iam::420018626735:role/CICDRole
         aws-region: eu-central-1
 
-    - name: Test AWS Credentials
-      run: |
-        aws s3 ls s3://schurteb-cloud-resume-challenge-bucket
-
     # Install the latest version of Terraform CLI
     - name: Install Terraform
       env:
