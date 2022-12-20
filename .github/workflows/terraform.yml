@@ -29,7 +29,7 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::420018626735:role/cicdrole
+        role-to-assume: arn:aws:iam::420018626735:role/CICDRole
         aws-region: eu-central-1
 
     - name: Test AWS Credentials
