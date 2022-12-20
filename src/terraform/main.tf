@@ -1,3 +1,16 @@
+module "pipeline_authentication" {
+  source = "./modules/pipeline-authentication"
+
+  region = var.region
+  
+  default_tags = merge(
+    var.default_tags,
+    tomap({
+      Module = "pipeline_authentication",
+    })
+  )
+}
+
 resource "aws_s3_bucket" "schurteb-cloud-resume-challenge-bucket" {
   bucket = "${var.name}-bucket"
 
