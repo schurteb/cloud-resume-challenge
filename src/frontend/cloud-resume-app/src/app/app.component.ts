@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+@Injectable()
 export class AppComponent {
   title = 'cloud-resume-app';
 
@@ -14,7 +16,7 @@ export class AppComponent {
 
   colors: any;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.colors = {
       background: "rgba(255,255,255,1)",
       border: "rgba(102,102,102,1)",
@@ -62,6 +64,15 @@ export class AppComponent {
       this.config.sectionsColor.push(this.colors.letter);
       this.config.navigationTooltips.push(anchor);
     });
+
+    http.post("https://api.resume.schurteb.ch/view_count", "", {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": ""
+      }
+    }).subscribe((value: any) => {
+      console.log(value);
+    })
   }
 
   getRef(fullPageRef: any) {
