@@ -68,6 +68,9 @@ go.work
 *.tfstate
 *.tfstate.*
 
+# Terraform archive files
+src/terraform/**/*.zip
+
 # Crash log files
 crash.log
 crash.*.log
