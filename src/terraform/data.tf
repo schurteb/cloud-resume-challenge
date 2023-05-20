@@ -30,9 +30,31 @@ data "aws_iam_policy_document" "lambda_assume_role_policy" {
 
     actions = ["sts:AssumeRole"]
   }
+
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["apigateway.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
 }
 
 data "aws_iam_policy_document" "lambda_role_permissions_policy" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "lambda:InvokeFunction"
+    ]
+
+    resources = [
+      "*"
+    ]
+  }
   statement {
     effect = "Allow"
 
@@ -47,8 +69,14 @@ data "aws_iam_policy_document" "lambda_role_permissions_policy" {
   }
 }
 
-data "archive_file" "lambda_site_view_counter_src" {
+data "archive_file" "lambda_read_site_view_counter_src" {
   type        = "zip"
-  source_file = "lambda_site_view_counter.py"
-  output_path = "lambda_function_site_view_counter_payload.zip"
+  source_file = "lambda_read_site_view_counter.py"
+  output_path = "lambda_function_read_site_view_counter_payload.zip"
+}
+
+data "archive_file" "lambda_write_site_view_counter_src" {
+  type        = "zip"
+  source_file = "lambda_write_site_view_counter.py"
+  output_path = "lambda_function_write_site_view_counter_payload.zip"
 }

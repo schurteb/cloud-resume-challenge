@@ -73,7 +73,10 @@ resource "aws_iam_policy" "pipeline_access_policy" {
         "s3:*",
         "dynamodb:*",
         "cloudfront:*",
-        "lambda:*"
+        "lambda:*",
+        "acm:*",
+        "apigateway:*",
+        "route53:*"
       ],
       "Resource": "*"
     },
