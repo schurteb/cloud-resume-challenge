@@ -16,6 +16,11 @@ def lambda_handler(event, context):
     print("event does not have property \"path\"")
     return {
         'statusCode': 400,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+        },
         'body': "{}".format(
             #response.text
             "event does not have property \"path\""
@@ -25,6 +30,11 @@ def lambda_handler(event, context):
   if path != "/view_count":
       return {
         'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+        },
         'body': "{}".format(
             #response.text
             "event does not request root resource (" + path + ")"
@@ -43,6 +53,11 @@ def lambda_handler(event, context):
 
   return {
         'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+        },
         'body': "{}".format(
             #response.text
             views
