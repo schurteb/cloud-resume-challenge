@@ -1,8 +1,8 @@
-data "aws_iam_policy_document" "allow_access_from_cloudfront_oai" {
+data "aws_iam_policy_document" "allow_access_from_cloudfront_oac" {
   statement {
     principals {
-      type        = "AWS"
-      identifiers = ["arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.origin_access_identity.id}"]
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
     }
 
     effect = "Allow"
@@ -17,4 +17,66 @@ data "aws_iam_policy_document" "allow_access_from_cloudfront_oai" {
       "${aws_s3_bucket.schurteb-cloud-resume-challenge-bucket.arn}/*",
     ]
   }
+}
+
+data "aws_iam_policy_document" "lambda_assume_role_policy" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["apigateway.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+data "aws_iam_policy_document" "lambda_role_permissions_policy" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "lambda:InvokeFunction"
+    ]
+
+    resources = [
+      "*"
+    ]
+  }
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "dynamodb:GetItem",
+      "dynamodb:PutItem"
+    ]
+
+    resources = [
+      aws_dynamodb_table.dynamodb_backend.arn
+    ]
+  }
+}
+
+data "archive_file" "lambda_read_site_view_counter_src" {
+  type        = "zip"
+  source_file = "lambda_read_site_view_counter.py"
+  output_path = "lambda_function_read_site_view_counter_payload.zip"
+}
+
+data "archive_file" "lambda_write_site_view_counter_src" {
+  type        = "zip"
+  source_file = "lambda_write_site_view_counter.py"
+  output_path = "lambda_function_write_site_view_counter_payload.zip"
 }
