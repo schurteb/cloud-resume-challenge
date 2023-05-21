@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularFullpageModule } from '@fullpage/angular-fullpage';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +22,8 @@ import { TechStackComponent } from './tech-stack/tech-stack.component';
   ],
   imports: [
     BrowserModule,
+    // import HttpClientModule after BrowserModule.
+    HttpClientModule,
     AppRoutingModule,
     AngularFullpageModule
   ],

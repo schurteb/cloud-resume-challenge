@@ -201,7 +201,7 @@ resource "aws_api_gateway_rest_api" "api" {
 
 resource "aws_api_gateway_deployment" "dev" {
   rest_api_id = aws_api_gateway_rest_api.api.id
-  stage_name = "dev"
+  stage_name  = "dev"
 
   # TODO: Needs triggers here
   triggers = {
@@ -236,7 +236,7 @@ resource "aws_api_gateway_deployment" "dev" {
 
 resource "aws_api_gateway_deployment" "prod" {
   rest_api_id = aws_api_gateway_rest_api.api.id
-  stage_name = "prod"
+  stage_name  = "prod"
 
   # TODO: Needs triggers here
   triggers = {
@@ -249,10 +249,13 @@ resource "aws_api_gateway_deployment" "prod" {
     #       It will stabilize to only change when resources change afterwards.
     redeployment = sha1(jsonencode([
       aws_api_gateway_resource.view_count.id,
+      aws_api_gateway_method.view_count_options.id,
       aws_api_gateway_method.view_count_get.id,
       aws_api_gateway_method.view_count_post.id,
+      aws_api_gateway_integration.view_count_options.id,
       aws_api_gateway_integration.view_count_get.id,
       aws_api_gateway_integration.view_count_post.id,
+      aws_api_gateway_integration_response.view_count_options.id,
     ]))
   }
 
@@ -366,6 +369,18 @@ resource "aws_api_gateway_resource" "view_count" {
   }
 }
 
+// OPTIONS
+resource "aws_api_gateway_method" "view_count_options" {
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  resource_id   = aws_api_gateway_resource.view_count.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
+
+  lifecycle {
+    create_before_destroy = false
+  }
+}
+
 // GET
 resource "aws_api_gateway_method" "view_count_get" {
   rest_api_id   = aws_api_gateway_rest_api.api.id
@@ -390,13 +405,88 @@ resource "aws_api_gateway_method" "view_count_post" {
   }
 }
 
+resource "aws_api_gateway_model" "model_cors" {
+  rest_api_id  = aws_api_gateway_rest_api.api.id
+  name         = "cors"
+  description  = "a cors model"
+  content_type = "application/json"
+
+  schema = jsonencode({
+    "$schema" = "http://json-schema.org/draft-04/schema#"
+    type      = "object"
+    properties = {
+      statusCode = {
+        type = "integer"
+      }
+    }
+    title = "cors Schema"
+  })
+}
+
+resource "aws_api_gateway_method_response" "view_count_options_200" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  resource_id = aws_api_gateway_resource.view_count.id
+  http_method = aws_api_gateway_method.view_count_options.http_method
+  status_code = "200"
+
+  response_models = {
+    "application/json" = "cors"
+  }
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = false,
+    "method.response.header.Access-Control-Allow-Methods" = false,
+    "method.response.header.Access-Control-Allow-Origin"  = false
+  }
+
+  depends_on = [
+    aws_api_gateway_method.view_count_options
+  ]
+}
+resource "aws_api_gateway_integration" "view_count_options" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  resource_id = aws_api_gateway_resource.view_count.id
+  http_method = aws_api_gateway_method.view_count_options.http_method
+  type        = "MOCK"
+
+  request_templates = {
+    "application/json" = "#set($inputRoot = $input.path('$'))\n{\"statusCode\": 200}"
+  }
+
+  depends_on = [
+    aws_api_gateway_method.view_count_options
+  ]
+}
+resource "aws_api_gateway_integration_response" "view_count_options" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  resource_id = aws_api_gateway_resource.view_count.id
+  http_method = aws_api_gateway_method.view_count_options.http_method
+  status_code = aws_api_gateway_method_response.view_count_options_200.status_code
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST'",
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+
+  response_templates = {
+    "application/json" = jsonencode(
+      {
+        statusCode = 200
+      }
+    )
+  }
+  depends_on = [
+    aws_api_gateway_method_response.view_count_options_200
+  ]
+}
+
 resource "aws_api_gateway_integration" "view_count_get" {
   http_method             = aws_api_gateway_method.view_count_get.http_method
   integration_http_method = "POST"
-  passthrough_behavior = "WHEN_NO_MATCH"
+  passthrough_behavior    = "WHEN_NO_MATCH"
   resource_id             = aws_api_gateway_resource.view_count.id
   rest_api_id             = aws_api_gateway_rest_api.api.id
-  timeout_milliseconds = "29000"
+  timeout_milliseconds    = "29000"
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.lambda_read_site_view_counter.invoke_arn
   credentials             = aws_iam_role.lambda_role.arn
@@ -405,10 +495,10 @@ resource "aws_api_gateway_integration" "view_count_get" {
 resource "aws_api_gateway_integration" "view_count_post" {
   http_method             = aws_api_gateway_method.view_count_post.http_method
   integration_http_method = "POST"
-  passthrough_behavior = "WHEN_NO_MATCH"
+  passthrough_behavior    = "WHEN_NO_MATCH"
   resource_id             = aws_api_gateway_resource.view_count.id
   rest_api_id             = aws_api_gateway_rest_api.api.id
-  timeout_milliseconds = "29000"
+  timeout_milliseconds    = "29000"
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.lambda_write_site_view_counter.invoke_arn
   credentials             = aws_iam_role.lambda_role.arn
@@ -428,7 +518,7 @@ resource "aws_api_gateway_integration" "view_count_post" {
 resource "aws_lambda_permission" "apigw_lambda_permission_read" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.lambda_read_site_view_counter.function_name}"
+  function_name = aws_lambda_function.lambda_read_site_view_counter.function_name
   principal     = "apigateway.amazonaws.com"
 
   # The /*/* portion grants access from any method on any resource
@@ -439,7 +529,7 @@ resource "aws_lambda_permission" "apigw_lambda_permission_read" {
 resource "aws_lambda_permission" "apigw_lambda_permission_write" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.lambda_write_site_view_counter.function_name}"
+  function_name = aws_lambda_function.lambda_write_site_view_counter.function_name
   principal     = "apigateway.amazonaws.com"
 
   # The /*/* portion grants access from any method on any resource
