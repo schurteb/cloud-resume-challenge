@@ -6,6 +6,11 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { AppComponent } from './app.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { CertificationInfoComponent } from './certification-info/certification-info.component';
+import { EmploymentHistoryComponent } from './employment-history/employment-history.component';
+import { ProjectInfoComponent } from './project-info/project-info.component';
+import { TechStackComponent } from './tech-stack/tech-stack.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -15,7 +20,12 @@ describe('AppComponent', () => {
         HttpClientTestingModule,
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        CertificationInfoComponent,
+        EmploymentHistoryComponent,
+        PersonalInfoComponent,
+        ProjectInfoComponent,
+        TechStackComponent
       ],
     }).compileComponents();
   });
