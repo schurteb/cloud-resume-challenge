@@ -15,15 +15,15 @@ resource "aws_iam_openid_connect_provider" "oidc_provider_github" {
     "6938fd4d98bab03faadb97b34396831e3780aea1"
   ]
 
-  tags = merge(var.default_tags, tomap({
+  tags = tomap({
     "Name" = "Identity provider github.com"
     "Desc" = "Identity provider for access from github.com CI/CD pipelines"
-  }))
+  })
 }
 
 resource "aws_iam_role" "pipeline_role" {
-  name  = "CICDRole"
-  path  = "/"
+  name = "CICDRole"
+  path = "/"
 
   # Allow max sessions of up to two hours
   max_session_duration = (2 * 3600)
@@ -51,10 +51,10 @@ resource "aws_iam_role" "pipeline_role" {
 }
   POLICY
 
-  tags = merge(var.default_tags, tomap({
+  tags = tomap({
     "Name" = "CICDRole"
     "Desc" = "AWS IAM role to be used within pipeline."
-  }))
+  })
 }
 
 resource "aws_iam_policy" "pipeline_access_policy" {
@@ -92,9 +92,9 @@ resource "aws_iam_policy" "pipeline_access_policy" {
 }
   POLICY
 
-  tags = merge(var.default_tags, tomap({
+  tags = tomap({
     "Name" = "${var.name}-access-policy"
-  }))
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "policy_attachment_access_policy" {

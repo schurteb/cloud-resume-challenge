@@ -2,24 +2,14 @@ module "pipeline_authentication" {
   source = "./modules/pipeline-authentication"
 
   region = var.region
-
-  default_tags = merge(
-    var.default_tags,
-    tomap({
-      Module = "pipeline_authentication",
-    })
-  )
 }
 
 resource "aws_s3_bucket" "schurteb-cloud-resume-challenge-bucket" {
   bucket = "${var.name}-bucket"
 
-  tags = merge(
-    var.default_tags,
-    tomap({
+  tags = tomap({
       Name = "${var.name}-bucket",
     })
-  )
 }
 
 resource "aws_s3_bucket_policy" "allow_access_from_cloudfront_oac" {
@@ -81,12 +71,9 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution_public_site" {
 
   retain_on_delete = "false"
 
-  tags = merge(
-    var.default_tags,
-    tomap({
+  tags = tomap({
       Name = "${var.name}-public-site",
     })
-  )
 
   viewer_certificate {
     minimum_protocol_version = "TLSv1"
