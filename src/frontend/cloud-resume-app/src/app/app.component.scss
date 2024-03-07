@@ -14,7 +14,14 @@
     margin: 10px 0;
 }
 
-#menu li a {
+#menu a {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    padding: 0 1.1em 1.1em;
+}
+
+#menu-mobile p {
     font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
     color: white;
@@ -30,6 +37,15 @@
     text-decoration-thickness: 2px;
 }
 
+#menu-mobile .active {
+    font-weight: 700;
+}
+
+#menu-mobile .active a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
 #menu a:hover {
     opacity: 0.8;
 }
@@ -40,4 +56,28 @@ ol, ul {
 
 .section {
     text-align: center;
+}
+
+// show it on devices with min of 768 px and higher
+@media (min-width: 768px) {
+    .display-desktop {
+        display: flex !important;
+    }
+
+
+    .display-mobile {
+        display: none !important;
+    }
+}
+
+// show it on devices with max of 767 px and lower
+@media (max-width: 767px) {
+    .display-desktop {
+        display: none !important;
+    }
+
+
+    .display-mobile {
+        display: flex !important;
+    }
 }
