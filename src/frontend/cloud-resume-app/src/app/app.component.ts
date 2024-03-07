@@ -35,7 +35,7 @@ export class AppComponent {
       anchors: [
         'me',
         'certs',
-        'technical',
+        'skills',
         'work',
         'projects'
       ],
