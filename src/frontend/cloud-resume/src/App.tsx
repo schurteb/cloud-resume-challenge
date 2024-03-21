@@ -1,21 +1,19 @@
 import * as React from 'react';
 import { Outlet } from "react-router-dom";
-import { Alert, Typography, CssBaseline, Collapse, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import i18n from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
 
 // Local components/functions
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import ColorModeContext from './context/ColorModeContext';
 import createCustomTheme from './styles/CustomTheme';
 import LocalizationContext from './context/LocalizationContext';
-import isDevelopment from './isDevelopment';
 
 // Local styles
 import "./styles/App.css";
@@ -43,9 +41,6 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
 
 export default function App() {
     const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
-    const [alertOpen, setAlertOpen] = React.useState<boolean>(true);
-    //const [localizationMode, setLocalization] = React.useState<'utc' | 'de'>('utc');
-    const { t } = useTranslation();
 
     const toggleColorMode = React.useMemo(
         () => ({
@@ -59,7 +54,6 @@ export default function App() {
     const toggleLocalizationMode = React.useMemo(
         () => ({
             setLocalization: (locale: 'utc' | 'de') => {
-                //setLocalization(locale);
             },
         }),
         [],
@@ -88,28 +82,6 @@ export default function App() {
         [mode],
     );
 
-    /*const getDateLibInstance = () => {
-        var i = null;
-
-        i = dayjs.utc();
-
-        switch (localizationMode.toLowerCase()) {
-            case 'utc':
-                i = dayjs.utc;
-                break;
-            case 'de':
-                i = dayjs();
-                break;
-        }
-
-        return i;
-    }*/
-
-    /*const localizationInstance = React.useMemo(
-        () => getDateLibInstance(),
-        [localizationMode],
-    );*/
-
     fetch('https://api.resume.schurteb.ch/view_count', {
         headers: {
             "Content-Type": "application/json",
@@ -130,48 +102,7 @@ export default function App() {
               <SnackbarProvider>
                 <CssBaseline />
 
-                {/*isDevelopment() ? (
-                  <Collapse in={alertOpen}>
-                    <Alert
-                      severity="warning"
-                      action={
-                        <IconButton
-                          aria-label="close"
-                          color="inherit"
-                          size="small"
-                          onClick={() => {
-                            setAlertOpen(false);
-                          }}
-                        >
-                          <CloseIcon fontSize="inherit" />
-                        </IconButton>
-                      }
-                      style={{
-                        position: "absolute",
-                        justifyContent: "center",
-                        width: "100%",
-                        zIndex: 2000,
-                      }}
-                    >
-                      {t("WarningDevelopmentMode")}
-                    </Alert>
-                  </Collapse>
-                ) : (
-                  <></>
-                )*/}
-
                 <ResponsiveAppBar />
-
-                {/*isDevelopment() ? (
-                  <Typography textAlign="center">
-                    NE: {process.env.NODE_ENV}&nbsp;|&nbsp; E:{" "}
-                    {process.env.REACT_APP_ENVIRONMENT}&nbsp;|&nbsp; TC:{" "}
-                    {process.env.REACT_APP_TARGET_CHAIN_ID}
-                    <br />
-                  </Typography>
-                ) : (
-                  <></>
-                )*/}
 
                 <Outlet />
               </SnackbarProvider>

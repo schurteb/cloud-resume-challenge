@@ -12,10 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom';
-import { ConnectWallet } from '@thirdweb-dev/react';
 import ColorModeToggleButton from './ColorModeToggleButton';
 import LanguageSelector from './LanguageSelector';
 import { useTheme } from '@mui/material/styles';
@@ -27,7 +25,6 @@ const settings: string[] = [/*'Profile', 'Account', 'Dashboard', 'Logout'*/];
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElSetting, setAnchorElSetting] = React.useState<null | HTMLElement>(null);
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const theme = useTheme();
     const { t } = useTranslation();
 
@@ -39,20 +36,12 @@ function ResponsiveAppBar() {
         setAnchorElSetting(event.currentTarget);
     };
 
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
     const handleCloseSettingMenu = () => {
         setAnchorElSetting(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     const rootLinkMobile = () => {
@@ -251,51 +240,6 @@ function ResponsiveAppBar() {
                             </MenuItem>
                         </Menu>
                     </Box>
-
-                    {/* Desktop connect wallet button */}
-                    {/*<Box sx={{ flexGrow: 0.1, display: { xs: 'none', md: 'flex' } }}>
-                        <ConnectWallet btnTitle={t("WalletOperations.ConnectWalletTitle").toString()} colorMode={theme.palette.mode === 'dark' ? 'light' : 'dark'} />
-                    </Box>*/}
-
-                    {/* Mobile connect wallet box */}
-                    {/*<Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
-                        <Tooltip title={anchorElUser ? "" : "Open settings"}>
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar variant="rounded" sx={{ backgroundColor: "transparent" }}>
-                                    <AccountBalanceWalletIcon sx={{color: theme.palette.common.white}} />
-                                </Avatar>
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-
-                            {
-                                //Mobile connect wallet button
-                            }
-                            <MenuItem key={"ConnectWallet"} sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
-                                <ConnectWallet btnTitle={t("WalletOperations.ConnectWalletTitle").toString()} colorMode={theme.palette.mode === 'dark' ? 'light' : 'dark'} />
-                            </MenuItem>
-                        </Menu>
-                    </Box>*/}
                 </Toolbar>
             </Container>
         </AppBar>
