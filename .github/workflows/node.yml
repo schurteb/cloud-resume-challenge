@@ -37,25 +37,25 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: src/frontend/cloud-resume-app/package-lock.json
+        cache-dependency-path: src/frontend/cloud-resume/yarn.lock
     
     # Installs dependencies
     - name: Install dependencies
       run: |
-        cd src/frontend/cloud-resume-app
-        npm ci
+        cd src/frontend/cloud-resume
+        yarn install --frozen-lockfile
 
     # Runs the build
     - name: Build
       run: |
-        cd src/frontend/cloud-resume-app
-        npm run build --if-present
+        cd src/frontend/cloud-resume
+        yarn run build
 
     # Runs npm tests on the project
     - name: Test
       run: |
-        cd src/frontend/cloud-resume-app
-        npm test -- --watch=false --browsers=ChromeHeadless
+        cd src/frontend/cloud-resume
+        yarn run test -- --watch=false --browsers=ChromeHeadless
 
     # Get AWS credentials
     - name: Configure AWS Credentials
@@ -68,7 +68,7 @@ jobs:
       env:
         AWS_EC2_METADATA_DISABLED: true # Reason: https://notestoself.dev/posts/github-action-s3-botocore-awsrequest-process-255-error/
       run: |
-        aws s3 sync src/frontend/cloud-resume-app/dist/cloud-resume-app/ s3://schurteb-cloud-resume-challenge-bucket/
+        aws s3 sync src/frontend/cloud-resume/dist/cloud-resume/ s3://schurteb-cloud-resume-challenge-bucket/
 
     - name: Invalidate CloudFront cache
       env:
