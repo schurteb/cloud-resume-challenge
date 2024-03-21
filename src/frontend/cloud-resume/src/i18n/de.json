@@ -3,6 +3,26 @@
     "Welcome to React": "Willkommen zu React und react-i18next",
     "WelcomeTitle": "Willkommen zu <1>{{linkText}}</1>!",
     "WarningDevelopmentMode": "Applikation läuft im Entwicklermodus!",
+    "IntroGreeting": "Willkommen!",
+    "IntroText": "Ich bin",
+    "IntroDescription": "Ich bin ein",
+    "IntroDescriptionKeys": {
+      "Developer": "Software-Entwickler",
+      "Motorcyclist": "Motorradfahrer",
+      "CarEnthusiast": "Auto-Enthusiast"
+    },
+    "About": {
+      "Title": "Über mich",
+      "Keys": {
+        "Name": "Name",
+        "Location": "Ort",
+        "Email": "E-Mail"
+      },
+      "Name": "Benjamin Schurtenberger",
+      "Location": "Luzern",
+      "Country": "Schweiz",
+      "Email": "benjamin.schurtenberger@gmail.com"
+    },
     "WalletOperations": {
       "ConnectWalletTitle": "Wallet verbinden",
       "DeployContract": "Vertrag bereitstellen",
@@ -14,6 +34,9 @@
       "ContractDeploymentFailed": "Vertrag konnte nicht bereitgestellt werden"
     },
     "ResponsiveAppBar": {
+      "Home": "Home",
+      "About": "Über mich",
+      "Blog": "Blog",
       "Language": "Sprache"
     },
     "CrowdfundingCreateStepper": {
