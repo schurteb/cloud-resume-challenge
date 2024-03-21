@@ -2,6 +2,7 @@ import App from "./App";
 import "./styles/globals.css";
 import { createBrowserRouter } from "react-router-dom";
 import RootPage from "./pages/RootPage";
+import FullPage from "./pages/FullPage";
 import CrowdfundingRootPage from "./pages/CrowdfundingRootPage";
 import CrowdfundingIndexPage from "./pages/CrowdfundingIndexPage";
 
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <RootPage />
+        element: <FullPage />
       },
       {
         path: "crowdfunding",

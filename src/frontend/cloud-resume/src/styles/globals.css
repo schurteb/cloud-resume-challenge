@@ -17,10 +17,28 @@ a {
 
 html {
   color-scheme: dark;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 body {
   color: #e7e8e8;
   background: #0f1318;
-  overflow: auto !important;
+  overflow: hidden;
+}
+
+/*.section {
+  padding-bottom: 68px;
+}*/
+@media (max-width: 600px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+/*.section {
+  padding-bottom: 68px;
+}*/
+@media (min-width: 601px) {
+  .mobile-only {
+    display: none;
+  }
 }

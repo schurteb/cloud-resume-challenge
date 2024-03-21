@@ -21,7 +21,7 @@ import LanguageSelector from './LanguageSelector';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
-const pages: string[] = ['Crowdfunding', 'Pricing', 'Blog'];
+const pages: string[] = ['Home', 'About', 'Blog'];
 const settings: string[] = [/*'Profile', 'Account', 'Dashboard', 'Logout'*/];
 
 function ResponsiveAppBar() {
@@ -100,7 +100,7 @@ function ResponsiveAppBar() {
     }
 
     return (
-        <AppBar position="sticky">
+        <AppBar position="fixed">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 
@@ -133,7 +133,7 @@ function ResponsiveAppBar() {
                                 {/*page*/}
                                 <Link to={page.toLowerCase()}>
                                     <Typography textAlign="center" sx={{color: theme.palette.text.primary}}>
-                                        {page}
+                                        {t("ResponsiveAppBar." + page)}
                                     </Typography>
                                 </Link>
                             </Button>
@@ -174,7 +174,7 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link to={page.toLowerCase()}><Typography textAlign="center" sx={{color: theme.palette.text.primary}}>{page}</Typography></Link>
+                                    <Link to={page.toLowerCase()}><Typography textAlign="center" sx={{color: theme.palette.text.primary}}>{t("ResponsiveAppBar." + page)}</Typography></Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -253,12 +253,12 @@ function ResponsiveAppBar() {
                     </Box>
 
                     {/* Desktop connect wallet button */}
-                    <Box sx={{ flexGrow: 0.1, display: { xs: 'none', md: 'flex' } }}>
+                    {/*<Box sx={{ flexGrow: 0.1, display: { xs: 'none', md: 'flex' } }}>
                         <ConnectWallet btnTitle={t("WalletOperations.ConnectWalletTitle").toString()} colorMode={theme.palette.mode === 'dark' ? 'light' : 'dark'} />
-                    </Box>
+                    </Box>*/}
 
                     {/* Mobile connect wallet box */}
-                    <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+                    {/*<Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                         <Tooltip title={anchorElUser ? "" : "Open settings"}>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar variant="rounded" sx={{ backgroundColor: "transparent" }}>
@@ -288,12 +288,14 @@ function ResponsiveAppBar() {
                                 </MenuItem>
                             ))}
 
-                            {/* Mobile connect wallet button */}
+                            {
+                                //Mobile connect wallet button
+                            }
                             <MenuItem key={"ConnectWallet"} sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                                 <ConnectWallet btnTitle={t("WalletOperations.ConnectWalletTitle").toString()} colorMode={theme.palette.mode === 'dark' ? 'light' : 'dark'} />
                             </MenuItem>
                         </Menu>
-                    </Box>
+                    </Box>*/}
                 </Toolbar>
             </Container>
         </AppBar>

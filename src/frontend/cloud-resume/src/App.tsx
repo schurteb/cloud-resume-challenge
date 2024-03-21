@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Outlet } from "react-router-dom";
-import { Alert, Typography, CssBaseline } from '@mui/material';
+import { Alert, Typography, CssBaseline, Collapse, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -42,6 +43,7 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
 
 export default function App() {
     const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
+    const [alertOpen, setAlertOpen] = React.useState<boolean>(true);
     //const [localizationMode, setLocalization] = React.useState<'utc' | 'de'>('utc');
     const { t } = useTranslation();
 
@@ -108,41 +110,74 @@ export default function App() {
         [localizationMode],
     );*/
 
+    fetch('https://api.resume.schurteb.ch/view_count', {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": ""
+        }
+    })
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
+
     return (
-            <LocalizationContext.Provider value={toggleLocalizationMode}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} dateLibInstance={dayjs.utc}>
-                    <ColorModeContext.Provider value={toggleColorMode}>
-                        <ThemeProvider theme={theme}>
-                            <SnackbarProvider>
+      <LocalizationContext.Provider value={toggleLocalizationMode}>
+        <LocalizationProvider
+          dateAdapter={AdapterDayjs}
+          dateLibInstance={dayjs.utc}
+        >
+          <ColorModeContext.Provider value={toggleColorMode}>
+            <ThemeProvider theme={theme}>
+              <SnackbarProvider>
+                <CssBaseline />
 
-                            <CssBaseline />
+                {/*isDevelopment() ? (
+                  <Collapse in={alertOpen}>
+                    <Alert
+                      severity="warning"
+                      action={
+                        <IconButton
+                          aria-label="close"
+                          color="inherit"
+                          size="small"
+                          onClick={() => {
+                            setAlertOpen(false);
+                          }}
+                        >
+                          <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                      }
+                      style={{
+                        position: "absolute",
+                        justifyContent: "center",
+                        width: "100%",
+                        zIndex: 2000,
+                      }}
+                    >
+                      {t("WarningDevelopmentMode")}
+                    </Alert>
+                  </Collapse>
+                ) : (
+                  <></>
+                )*/}
 
-                            {isDevelopment() ?
-                                <Alert severity="warning" style={{ justifyContent: 'center' }}>
-                                    {t('WarningDevelopmentMode')}
-                                </Alert>
-                                :
-                                <></>
-                            }
+                <ResponsiveAppBar />
 
-                            <ResponsiveAppBar />
+                {/*isDevelopment() ? (
+                  <Typography textAlign="center">
+                    NE: {process.env.NODE_ENV}&nbsp;|&nbsp; E:{" "}
+                    {process.env.REACT_APP_ENVIRONMENT}&nbsp;|&nbsp; TC:{" "}
+                    {process.env.REACT_APP_TARGET_CHAIN_ID}
+                    <br />
+                  </Typography>
+                ) : (
+                  <></>
+                )*/}
 
-                            {isDevelopment() ?
-                                <Typography textAlign="center">
-                                    NE: {process.env.NODE_ENV}&nbsp;|&nbsp;
-                                    E: {process.env.REACT_APP_ENVIRONMENT}&nbsp;|&nbsp;
-                                    TC: {process.env.REACT_APP_TARGET_CHAIN_ID}<br />
-                                </Typography>
-                                :
-                                <></>
-                            }
-
-                            <Outlet />
-
-                            </SnackbarProvider>
-                        </ThemeProvider>
-                    </ColorModeContext.Provider>
-                </LocalizationProvider>
-            </LocalizationContext.Provider>
+                <Outlet />
+              </SnackbarProvider>
+            </ThemeProvider>
+          </ColorModeContext.Provider>
+        </LocalizationProvider>
+      </LocalizationContext.Provider>
     );
 }

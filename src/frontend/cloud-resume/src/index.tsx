@@ -18,7 +18,7 @@ const root = createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider activeChain={activeChain}
+    {/*<ThirdwebProvider activeChain={activeChain}
       autoConnect={true}
       dAppMeta={{
         name: "My App",
@@ -27,10 +27,10 @@ root.render(
         url: "https://example.com",
         isDarkMode: true,
       }}
-    >
+    >*/}
       
       <RouterProvider router={router} />
-    </ThirdwebProvider>
+    {/*</ThirdwebProvider>*/}
   </React.StrictMode>
 );
 

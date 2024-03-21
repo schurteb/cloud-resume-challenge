@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+//@ts-ignore
 import ReactCountryFlag, { ReactCountryFlagProps } from 'react-country-flag';
 
 export default function LanguageSelector() {
