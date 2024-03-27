@@ -59,7 +59,7 @@ jobs:
 
     # Get AWS credentials
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: arn:aws:iam::420018626735:role/CICDRole
         aws-region: eu-central-1
