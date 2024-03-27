@@ -20,7 +20,6 @@ import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
 const pages: string[] = ['Home', 'About', 'Blog'];
-const settings: string[] = [/*'Profile', 'Account', 'Dashboard', 'Logout'*/];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -223,12 +222,6 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElSetting)}
                             onClose={handleCloseSettingMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseSettingMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-
                             {/* Mobile theme toggler */}
                             <MenuItem key={"ColorModeToggleMobile"} sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                                 <ColorModeToggleButton />
