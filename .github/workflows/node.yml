@@ -68,7 +68,7 @@ jobs:
       env:
         AWS_EC2_METADATA_DISABLED: true # Reason: https://notestoself.dev/posts/github-action-s3-botocore-awsrequest-process-255-error/
       run: |
-        aws s3 sync src/frontend/cloud-resume/dist/cloud-resume/ s3://schurteb-cloud-resume-challenge-bucket/
+        aws s3 sync src/frontend/cloud-resume/build/ s3://schurteb-cloud-resume-challenge-bucket/
 
     - name: Invalidate CloudFront cache
       env:
