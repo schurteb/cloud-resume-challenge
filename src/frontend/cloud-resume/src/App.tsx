@@ -68,12 +68,12 @@ export default function App() {
                         // Extra props for the light theme
                         background: {
                             elevated: "#cdcdcd",
-                            invertedElevated: "#323232",
+                            invertedElevated: "#434343",
                         }
                     } : {
                         // Extra props for the dark theme
                         background: {
-                            elevated: "#323232",
+                            elevated: "#434343",
                             invertedElevated: "#cdcdcd",
                         }
                     })
