@@ -52,6 +52,8 @@ export default function About() {
 
                         <td>
                             {t("About.Email")}
+                            <br />
+                            <a target="_blank" rel="noreferrer" href="https://flowcrypt.com/me/benjaminschurtenberger">{t("About.EmailFlowCryptIntro")}</a>
                         </td>
                     </tr>
                 </tbody>
