@@ -28,11 +28,11 @@ jobs:
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     # Sets up the node.js environment's
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       #working-directory: "src/frontend/cloud-resume-app"
       with:
         node-version: ${{ matrix.node-version }}
