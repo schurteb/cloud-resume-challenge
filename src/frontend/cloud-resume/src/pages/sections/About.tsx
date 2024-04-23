@@ -92,6 +92,31 @@ export default function About() {
                 </a>
               </td>
             </tr>
+            <tr>
+              <td style={{ verticalAlign: "top" }}>
+                <b>{t("About.Keys.OpenPGPKey")}</b>
+              </td>
+
+              <td>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="./openpgp-public-key.txt"
+                  style={{ color: theme.palette.primary.main }}
+                >
+                  {t("About.ViewKey")}
+                </a>
+                <br />
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="./openpgp-public-key.asc"
+                  style={{ color: theme.palette.primary.main }}
+                >
+                  {t("About.DownloadKey")}
+                </a>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

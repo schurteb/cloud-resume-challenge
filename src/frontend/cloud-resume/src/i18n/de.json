@@ -17,13 +17,17 @@
       "Keys": {
         "Name": "Name",
         "Location": "Ort",
-        "Email": "E-Mail"
+        "Email": "E-Mail",
+        "OpenPGPKey": "OpenPGP Schlüssel"
       },
       "Name": "Benjamin Schurtenberger",
       "Location": "Luzern",
       "Country": "Schweiz",
       "Email": "benjamin.schurtenberger\u200B@gmail.com",
-      "EmailFlowCryptIntro": "Sende mir eine verschlüsselte E-Mail"
+      "EmailFlowCryptIntro": "Sende mir eine verschlüsselte E-Mail",
+      "Or": "oder",
+      "ViewKey": "Schlüssel anzeigen",
+      "DownloadKey": "Schlüssel herunterladen"
     },
     "WalletOperations": {
       "ConnectWalletTitle": "Wallet verbinden",
