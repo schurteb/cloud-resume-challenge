@@ -19,7 +19,7 @@ import LanguageSelector from './LanguageSelector';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
-const pages: string[] = ['Home', 'About', 'Blog'];
+const pages: string[] = ['Home', 'About'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -115,11 +115,11 @@ function ResponsiveAppBar() {
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
+                                onClick={() => {handleCloseNavMenu(); window.fullpage_api.moveTo(page.toLowerCase())}}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {/*page*/}
-                                <Link to={page.toLowerCase()}>
+                                <Link to={"/#" + page.toLowerCase()}>
                                     <Typography textAlign="center" sx={{color: theme.palette.text.primary}}>
                                         {t("ResponsiveAppBar." + page)}
                                     </Typography>
@@ -161,8 +161,8 @@ function ResponsiveAppBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link to={page.toLowerCase()}><Typography textAlign="center" sx={{color: theme.palette.text.primary}}>{t("ResponsiveAppBar." + page)}</Typography></Link>
+                                <MenuItem key={page} onClick={() => {handleCloseNavMenu(); window.fullpage_api.moveTo(page.toLowerCase())}}>
+                                    <Link to={"/#" + page.toLowerCase()}><Typography textAlign="center" sx={{color: theme.palette.text.primary}}>{t("ResponsiveAppBar." + page)}</Typography></Link>
                                 </MenuItem>
                             ))}
                         </Menu>
