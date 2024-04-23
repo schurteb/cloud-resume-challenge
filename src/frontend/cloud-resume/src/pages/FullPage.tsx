@@ -33,7 +33,7 @@ class MySection extends React.Component<{ content: any; theme: CustomTheme }> {
 export default function FullPage() {
     const theme = useTheme<CustomTheme>();
 
-    const anchors = ["me", "certs", "skills", "work", "projects"];
+    const anchors = ["home", "about", "skills", "work", "projects"];
 
     return (
         <div id="fullpage_wrapper_custom">
