@@ -56,7 +56,9 @@ export default function Home() {
                         1500, // wait 1s before replacing "Mice" with "Hamsters"
                         t("IntroDescriptionKeys.Motorcyclist").toString() + ".",
                         1500,
-                        t("IntroDescriptionKeys.CarEnthusiast").toString() + ".",
+                        t("IntroDescriptionKeys.CarGuy").toString() + ".",
+                        1500,
+                        t("IntroDescriptionKeys.CryptoEnthusiast").toString() + ".",
                         1500,
                     ]}
                     wrapper="span"
