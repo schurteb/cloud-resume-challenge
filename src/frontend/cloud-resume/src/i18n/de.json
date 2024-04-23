@@ -21,7 +21,8 @@
       "Name": "Benjamin Schurtenberger",
       "Location": "Luzern",
       "Country": "Schweiz",
-      "Email": "benjamin.schurtenberger\u200B@gmail.com"
+      "Email": "benjamin.schurtenberger\u200B@gmail.com",
+      "EmailFlowCryptIntro": "Sende mir eine verschlüsselte E-Mail"
     },
     "WalletOperations": {
       "ConnectWalletTitle": "Wallet verbinden",
