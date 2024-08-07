@@ -126,7 +126,7 @@ resource "aws_lambda_function" "lambda_read_site_view_counter" {
 
   source_code_hash = data.archive_file.lambda_read_site_view_counter_src.output_base64sha256
 
-  runtime = "python3.9"
+  runtime = "python3.12"
 }
 
 resource "aws_lambda_function" "lambda_write_site_view_counter" {
@@ -139,7 +139,7 @@ resource "aws_lambda_function" "lambda_write_site_view_counter" {
 
   source_code_hash = data.archive_file.lambda_write_site_view_counter_src.output_base64sha256
 
-  runtime = "python3.9"
+  runtime = "python3.12"
 }
 
 /*resource "aws_lambda_function_url" "lambda_site_view_counter_invoke_url" {
