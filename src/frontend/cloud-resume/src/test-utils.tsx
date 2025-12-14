@@ -4,14 +4,17 @@ import { ThemeProvider } from '@mui/material/styles';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
+import { vi } from 'vitest';
 import ColorModeContext from './context/ColorModeContext';
 import createCustomTheme from './styles/CustomTheme';
+import enTranslations from './i18n/en.json';
+import deTranslations from './i18n/de.json';
 
 // Initialize i18n for tests
 i18n.use(initReactI18next).init({
     resources: {
-        en: require('./i18n/en.json'),
-        de: require('./i18n/de.json'),
+        en: enTranslations,
+        de: deTranslations,
     },
     lng: 'en',
     fallbackLng: 'en',
@@ -35,7 +38,7 @@ const theme = createCustomTheme({
 });
 
 const mockColorModeContext = {
-    toggleColorMode: jest.fn(),
+    toggleColorMode: vi.fn(),
 };
 
 function AllProviders({ children }: AllProvidersProps) {

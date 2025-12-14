@@ -1,8 +1,9 @@
 import { render, screen } from '../test-utils';
+import { vi } from 'vitest';
 import FullPage from './FullPage';
 
 // Mock ReactFullpage component
-jest.mock('@fullpage/react-fullpage', () => {
+vi.mock('@fullpage/react-fullpage', () => {
     const MockWrapper = ({ children }: { children: React.ReactNode }) => (
         <div data-testid="fullpage-wrapper">{children}</div>
     );
@@ -10,9 +11,9 @@ jest.mock('@fullpage/react-fullpage', () => {
     const MockReactFullpage = ({ render: renderProp }: { render: Function }) => {
         const mockState = {};
         const mockFullpageApi = {
-            moveTo: jest.fn(),
-            moveSlideRight: jest.fn(),
-            moveSlideLeft: jest.fn(),
+            moveTo: vi.fn(),
+            moveSlideRight: vi.fn(),
+            moveSlideLeft: vi.fn(),
         };
 
         return (
@@ -25,13 +26,12 @@ jest.mock('@fullpage/react-fullpage', () => {
     MockReactFullpage.Wrapper = MockWrapper;
 
     return {
-        __esModule: true,
         default: MockReactFullpage,
     };
 });
 
 // Mock the fullpage scrollHorizontally plugin
-jest.mock('./../statics/fullpage.scrollHorizontally.min', () => ({}), { virtual: true });
+vi.mock('./../statics/fullpage.scrollHorizontally.min', () => ({}));
 
 describe('FullPage', () => {
     it('renders the fullpage wrapper', () => {

@@ -1,30 +1,31 @@
 import { render, screen, waitFor, act } from './test-utils';
+import { vi } from 'vitest';
 import App from './App';
 
 // Mock fetch for view count API
-const mockFetch = jest.fn();
+const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
 // Mock localStorage
 const localStorageMock = {
-    getItem: jest.fn(),
-    setItem: jest.fn(),
-    removeItem: jest.fn(),
-    clear: jest.fn(),
+    getItem: vi.fn(),
+    setItem: vi.fn(),
+    removeItem: vi.fn(),
+    clear: vi.fn(),
 };
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
 // Mock window.fullpage_api for ResponsiveAppBar
 beforeAll(() => {
     (window as any).fullpage_api = {
-        moveTo: jest.fn(),
+        moveTo: vi.fn(),
     };
 });
 
 describe('App', () => {
     beforeEach(() => {
-        jest.clearAllMocks();
-        jest.useFakeTimers();
+        vi.clearAllMocks();
+        vi.useFakeTimers();
         mockFetch.mockResolvedValue({
             text: () => Promise.resolve('12345'),
         });
@@ -32,7 +33,7 @@ describe('App', () => {
     });
 
     afterEach(() => {
-        jest.useRealTimers();
+        vi.useRealTimers();
     });
 
     it('renders the app bar', async () => {
@@ -76,6 +77,8 @@ describe('App', () => {
     });
 
     it('fetches and displays view count after delay', async () => {
+        vi.useRealTimers(); // Use real timers for this test
+
         mockFetch.mockResolvedValue({
             text: () => Promise.resolve('42'),
         });
@@ -84,18 +87,13 @@ describe('App', () => {
             render(<App />);
         });
 
-        // Fast-forward the 500ms delay
-        await act(async () => {
-            jest.advanceTimersByTime(500);
-        });
-
-        // Wait for the view count to be displayed
+        // Wait for the view count to be fetched (after 500ms delay in App)
         await waitFor(() => {
             expect(mockFetch).toHaveBeenCalledWith(
                 'https://api.resume.schurteb.ch/view_count',
                 expect.objectContaining({ method: 'GET' })
             );
-        });
+        }, { timeout: 2000 });
     });
 
     it('handles view count fetch error gracefully', async () => {
@@ -106,7 +104,7 @@ describe('App', () => {
         });
 
         await act(async () => {
-            jest.advanceTimersByTime(500);
+            await vi.advanceTimersByTimeAsync(500);
         });
 
         // Should not crash - app should still be rendered

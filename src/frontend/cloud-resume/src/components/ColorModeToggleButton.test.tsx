@@ -1,9 +1,10 @@
 import { render, screen, fireEvent, mockColorModeContext } from '../test-utils';
+import { vi } from 'vitest';
 import ColorModeToggleButton from './ColorModeToggleButton';
 
 describe('ColorModeToggleButton', () => {
     beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('renders the toggle switch', () => {

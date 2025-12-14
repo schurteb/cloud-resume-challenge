@@ -9,8 +9,11 @@ import About from "./sections/About";
 import "../styles/fullpage.css";
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props
+// NOTE #2: After migration from CRA to Vite -> Import the plugin at the top level (side-effect import for window.fp_scrollHorizontallyExtension)
+import "./../statics/fullpage.scrollHorizontally.min";
+
 const pluginWrapper = () => {
-    require("./../statics/fullpage.scrollHorizontally.min");
+    // Plugin is already loaded via the import above
 };
 
 /*class MySection extends React.Component<{ content: any; theme: CustomTheme }> {
