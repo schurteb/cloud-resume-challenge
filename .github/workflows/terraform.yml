@@ -14,6 +14,9 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
+    concurrency:
+      group: terraform-state-master
+      cancel-in-progress: false  # queue instead of cancel
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
