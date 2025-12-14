@@ -80,8 +80,8 @@ export default function About() {
               </td>
 
               <td>
-                {t("About.Email")}
-                <br />
+                {/*t("About.Email")*/}
+                {/*<br />*/}
                 <a
                   target="_blank"
                   rel="noreferrer"

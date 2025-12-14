@@ -1,6 +1,6 @@
 {
-  "short_name": "react-typescript-starter",
-  "name": "thirdweb starter project with React & TypeScript",
+  "short_name": "Resume | resume.schurteb.ch",
+  "name": "Personal playground website using thirdweb starter project with React & TypeScript",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import { useTheme } from "@mui/material/styles";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { CustomTheme } from "../styles/CustomTheme";
@@ -13,7 +13,7 @@ const pluginWrapper = () => {
     require("./../statics/fullpage.scrollHorizontally.min");
 };
 
-class MySection extends React.Component<{ content: any; theme: CustomTheme }> {
+/*class MySection extends React.Component<{ content: any; theme: CustomTheme }> {
     render() {
         return (
             <div
@@ -28,12 +28,12 @@ class MySection extends React.Component<{ content: any; theme: CustomTheme }> {
             </div>
         );
     }
-}
+}*/
 
 export default function FullPage() {
     const theme = useTheme<CustomTheme>();
 
-    const anchors = ["home", "about", "skills", "work", "projects"];
+    const anchors = ["home", "about", /*"skills", "work", "projects"*/];
 
     return (
         <div id="fullpage_wrapper_custom">
@@ -65,7 +65,7 @@ export default function FullPage() {
 
                             <About />
 
-                            <div className="section">
+                            {/*<div className="section">
                                 <div
                                     className="slide"
                                     onClick={() => fullpageApi.moveSlideRight()}
@@ -83,10 +83,12 @@ export default function FullPage() {
                                     Slide 3.3
                                     <p>Yet another employment-history!</p>
                                 </div>
-                                {/*<h3>{this.props.content}</h3>*/}
-                            </div>
+                                {
+                                //<h3>{this.props.content}</h3>
+                                }
+                            </div>*/}
 
-                            <MySection content="Section 4" theme={theme} />
+                            {/*<MySection content="Section 4" theme={theme} />*/}
 
                             {theme.palette.mode}
                         </ReactFullpage.Wrapper>
