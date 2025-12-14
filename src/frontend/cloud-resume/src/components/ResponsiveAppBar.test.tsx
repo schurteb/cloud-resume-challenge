@@ -1,17 +1,18 @@
 import { render, screen, fireEvent, waitFor } from '../test-utils';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 import ResponsiveAppBar from './ResponsiveAppBar';
 
 // Mock window.fullpage_api
 beforeAll(() => {
     (window as any).fullpage_api = {
-        moveTo: jest.fn(),
+        moveTo: vi.fn(),
     };
 });
 
 describe('ResponsiveAppBar', () => {
     beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('renders the app bar', () => {
