@@ -11,6 +11,7 @@ import { initReactI18next } from "react-i18next";
 
 // Local components/functions
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
+import ViewCounter from "./components/ViewCounter";
 import ColorModeContext from './context/ColorModeContext';
 import createCustomTheme from './styles/CustomTheme';
 import LocalizationContext from './context/LocalizationContext';
@@ -21,6 +22,42 @@ import { SnackbarProvider } from 'notistack';
 
 // Initialize the UTC plugin for dayjs
 dayjs.extend(utc);
+
+// View count - always GET to display, POST handled separately with strict locking
+const VIEW_COUNT_LAST_KEY = 'viewCountLastIncrement';
+const DEBOUNCE_MS = 30000; // 30 second debounce
+
+function getViewCount(): Promise<number | null> {
+    return fetch('https://api.resume.schurteb.ch/view_count', {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(response => response.text())
+    .then(data => {
+        const count = parseInt(data, 10);
+        return isNaN(count) ? null : count;
+    })
+    .catch(() => null);
+}
+
+function tryIncrementViewCount(): void {
+    const now = Date.now();
+    const lastIncrement = localStorage.getItem(VIEW_COUNT_LAST_KEY);
+
+    // Strict debounce - only increment if last was 30+ seconds ago
+    if (lastIncrement && (now - parseInt(lastIncrement, 10)) < DEBOUNCE_MS) {
+        return;
+    }
+
+    // Set timestamp BEFORE fetch - any subsequent calls will see this and skip
+    localStorage.setItem(VIEW_COUNT_LAST_KEY, now.toString());
+
+    // Fire and forget
+    fetch('https://api.resume.schurteb.ch/view_count', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" }
+    }).catch(() => {});
+}
 
 i18n.use(initReactI18next) // passes i18n down to react-i18next
     .init({
@@ -41,6 +78,7 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
 
 export default function App() {
     const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
+    const [viewCount, setViewCount] = React.useState<number | null>(null);
 
     const toggleColorMode = React.useMemo(
         () => ({
@@ -82,14 +120,23 @@ export default function App() {
         [mode],
     );
 
-    fetch('https://api.resume.schurteb.ch/view_count', {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": ""
+    React.useEffect(() => {
+        // Only increment in production, not from dev server
+        if (process.env.REACT_APP_ENVIRONMENT === 'prod') {
+            tryIncrementViewCount();
         }
-    })
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
+
+        // Always fetch current count after a delay to show updated value
+        const timeoutId = setTimeout(() => {
+            getViewCount().then(count => {
+                if (count !== null) {
+                    setViewCount(count);
+                }
+            });
+        }, 500);
+
+        return () => clearTimeout(timeoutId);
+    }, []);
 
     return (
       <LocalizationContext.Provider value={toggleLocalizationMode}>
@@ -105,6 +152,8 @@ export default function App() {
                 <ResponsiveAppBar />
 
                 <Outlet />
+
+                <ViewCounter count={viewCount} />
               </SnackbarProvider>
             </ThemeProvider>
           </ColorModeContext.Provider>
