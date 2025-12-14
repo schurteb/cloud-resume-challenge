@@ -43,7 +43,7 @@ def lambda_handler(event, context):
 
   response = table.get_item(
     Key={
-      'ID':'1'
+      'ID':'page_view_counter'
     }
   )
 
