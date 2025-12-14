@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [24.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -68,9 +68,15 @@ jobs:
       env:
         AWS_EC2_METADATA_DISABLED: true # Reason: https://notestoself.dev/posts/github-action-s3-botocore-awsrequest-process-255-error/
       run: |
-        aws s3 sync src/frontend/cloud-resume/build/ s3://schurteb-cloud-resume-challenge-bucket/
+        if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
+          aws s3 sync src/frontend/cloud-resume/build/ s3://schurteb-cloud-resume-challenge-bucket/
+        else
+          echo "Dry run mode (non-master branch)"
+          aws s3 sync src/frontend/cloud-resume/build/ s3://schurteb-cloud-resume-challenge-bucket/ --dryrun
+        fi
 
     - name: Invalidate CloudFront cache
+      if: github.ref == 'refs/heads/master'
       env:
         AWS_EC2_METADATA_DISABLED: true # Reason: https://notestoself.dev/posts/github-action-s3-botocore-awsrequest-process-255-error/
         CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
