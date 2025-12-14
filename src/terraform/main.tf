@@ -126,7 +126,7 @@ resource "aws_lambda_function" "lambda_read_site_view_counter" {
 
   source_code_hash = data.archive_file.lambda_read_site_view_counter_src.output_base64sha256
 
-  runtime = "python3.12"
+  runtime = "python3.13"
 }
 
 resource "aws_lambda_function" "lambda_write_site_view_counter" {
@@ -139,7 +139,7 @@ resource "aws_lambda_function" "lambda_write_site_view_counter" {
 
   source_code_hash = data.archive_file.lambda_write_site_view_counter_src.output_base64sha256
 
-  runtime = "python3.12"
+  runtime = "python3.13"
 }
 
 /*resource "aws_lambda_function_url" "lambda_site_view_counter_invoke_url" {
@@ -188,7 +188,6 @@ resource "aws_api_gateway_rest_api" "api" {
 
 resource "aws_api_gateway_deployment" "dev" {
   rest_api_id = aws_api_gateway_rest_api.api.id
-  stage_name  = "dev"
 
   # TODO: Needs triggers here
   triggers = {
@@ -223,7 +222,6 @@ resource "aws_api_gateway_deployment" "dev" {
 
 resource "aws_api_gateway_deployment" "prod" {
   rest_api_id = aws_api_gateway_rest_api.api.id
-  stage_name  = "prod"
 
   # TODO: Needs triggers here
   triggers = {
