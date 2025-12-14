@@ -1,0 +1,64 @@
+{
+  "translation": {
+    "Welcome to React": "Willkommen zu React und react-i18next",
+    "WelcomeTitle": "Willkommen zu <1>{{linkText}}</1>!",
+    "WarningDevelopmentMode": "Applikation läuft im Entwicklermodus!",
+    "IntroGreeting": "Willkommen!",
+    "IntroText": "Ich bin",
+    "IntroDescription": "Ich bin ein",
+    "IntroDescriptionKeys": {
+      "Developer": "Software-Entwickler",
+      "Motorcyclist": "Motorradfahrer",
+      "CarGuy": "Auto-Fan",
+      "CryptoEnthusiast": "Kryptowährungs-Enthusiast"
+    },
+    "About": {
+      "Title": "Über mich",
+      "Keys": {
+        "Name": "Name",
+        "Location": "Ort",
+        "Email": "E-Mail",
+        "OpenPGPKey": "OpenPGP Schlüssel"
+      },
+      "Name": "Benjamin Schurtenberger",
+      "Location": "Luzern",
+      "Country": "Schweiz",
+      "Email": "benjamin.schurtenberger\u200B@gmail.com",
+      "EmailFlowCryptIntro": "Sende mir eine verschlüsselte E-Mail",
+      "Or": "oder",
+      "ViewKey": "Schlüssel anzeigen",
+      "DownloadKey": "Schlüssel herunterladen"
+    },
+    "WalletOperations": {
+      "ConnectWalletTitle": "Wallet verbinden",
+      "DeployContract": "Vertrag bereitstellen",
+      "TransactionPending": "Transaktion erfolgreich",
+      "TransactionSuccessful": "Transaktion erfolgreich",
+      "TransactionFailed": "Transaktion fehlgeschlagen",
+      "ContractDeploymentPending": "Vertrag wird bereitgestellt...",
+      "ContractDeploymentSuccessful": "Vertrag erfolgreich bereitgestellt",
+      "ContractDeploymentFailed": "Vertrag konnte nicht bereitgestellt werden"
+    },
+    "ResponsiveAppBar": {
+      "Home": "Home",
+      "About": "Über mich",
+      "Blog": "Blog",
+      "Language": "Sprache"
+    },
+    "CrowdfundingCreateStepper": {
+      "DetailsLabel": "Crowdfunding-Details angeben",
+      "DetailsDescription": "Für jede Werbekampagne, die Sie erstellen, können Sie kontrollieren, wie viel Sie für Klicks und Konversionen ausgeben möchten, auf welchen Netzwerken und in welchen geographischen Regionen Ihre Anzeigen angezeigt werden sollen und vieles mehr.",
+      "DeploymentLabel": "Vertrag bereitstellen",
+      "DeploymentDescription": "Eine Anzeigengruppe enthält eine oder mehrere Anzeigen, die auf einen gemeinsamen Satz von Keywords abzielen.",
+      "ResultLabel": "Anzeige erstellen",
+      "ResultDescription": "Probieren Sie verschiedene Anzeigentexte aus, um herauszufinden, was die meisten Kunden anzieht, und erfahren Sie, wie Sie Ihre Anzeigen mit Funktionen wie Anzeigenerweiterungen optimieren können. Wenn Sie Probleme mit Ihren Anzeigen haben, erfahren Sie, wie Sie feststellen können, ob sie ausgeführt werden, und wie Sie Genehmigungsprobleme beheben können.",
+      "fields": {
+        "Title": "Titel",
+        "InvalidTitle": "Ungültiger Titel",
+        "Goal": "Finanzierungsziel",
+        "InvalidGoal": "Ungültige Zahl",
+        "Deadline": "Frist (UTC) *"
+      }
+    }
+  }
+}

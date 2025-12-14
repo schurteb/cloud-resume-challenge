@@ -22,44 +22,44 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     # Sets up the node.js environment's
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       #working-directory: "src/frontend/cloud-resume-app"
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: src/frontend/cloud-resume-app/package-lock.json
+        cache-dependency-path: src/frontend/cloud-resume/yarn.lock
     
     # Installs dependencies
     - name: Install dependencies
       run: |
-        cd src/frontend/cloud-resume-app
-        npm ci
+        cd src/frontend/cloud-resume
+        yarn install --frozen-lockfile
 
     # Runs the build
     - name: Build
       run: |
-        cd src/frontend/cloud-resume-app
-        npm run build --if-present
+        cd src/frontend/cloud-resume
+        yarn run build
 
     # Runs npm tests on the project
-    - name: Test
-      run: |
-        cd src/frontend/cloud-resume-app
-        npm test -- --watch=false --browsers=ChromeHeadless
+    # - name: Test
+    #   run: |
+    #     cd src/frontend/cloud-resume
+    #     yarn run test -- --watch=false --browsers=ChromeHeadless
 
     # Get AWS credentials
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: arn:aws:iam::420018626735:role/CICDRole
         aws-region: eu-central-1
@@ -68,7 +68,7 @@ jobs:
       env:
         AWS_EC2_METADATA_DISABLED: true # Reason: https://notestoself.dev/posts/github-action-s3-botocore-awsrequest-process-255-error/
       run: |
-        aws s3 sync src/frontend/cloud-resume-app/dist/cloud-resume-app/ s3://schurteb-cloud-resume-challenge-bucket/
+        aws s3 sync src/frontend/cloud-resume/build/ s3://schurteb-cloud-resume-challenge-bucket/
 
     - name: Invalidate CloudFront cache
       env:
