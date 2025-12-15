@@ -43,8 +43,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ci": "vitest run --coverage",
-    "deploy": "yarn build && npx thirdweb@latest upload build",
-    "serve:local": "yarn build && npx serve -p 1234 ./build"
+    "deploy": "pnpm build && npx thirdweb@latest upload build",
+    "serve:local": "pnpm build && npx serve -p 1234 ./build"
   },
   "eslintConfig": {
     "extends": [

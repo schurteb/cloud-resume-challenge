@@ -30,32 +30,37 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     
+    # Sets up pnpm
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+
     # Sets up the node.js environment's
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
-      #working-directory: "src/frontend/cloud-resume-app"
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: src/frontend/cloud-resume/yarn.lock
-    
+        cache: 'pnpm'
+        cache-dependency-path: src/frontend/cloud-resume/pnpm-lock.yaml
+
     # Installs dependencies
     - name: Install dependencies
       run: |
         cd src/frontend/cloud-resume
-        yarn install --frozen-lockfile
+        pnpm install --frozen-lockfile
 
     # Runs the build
     - name: Build
       run: |
         cd src/frontend/cloud-resume
-        yarn run build
+        pnpm run build
 
     # Runs tests on the project
     - name: Test
       run: |
         cd src/frontend/cloud-resume
-        yarn run test:ci
+        pnpm run test:ci
 
     # Get AWS credentials
     - name: Configure AWS Credentials
