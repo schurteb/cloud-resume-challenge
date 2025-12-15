@@ -20,7 +20,6 @@ import LocalizationContext from './context/LocalizationContext';
 
 // Local styles
 import "./styles/App.css";
-import { SnackbarProvider } from 'notistack';
 
 // Initialize the UTC plugin for dayjs
 dayjs.extend(utc);
@@ -144,15 +143,13 @@ export default function App() {
         >
           <ColorModeContext.Provider value={toggleColorMode}>
             <ThemeProvider theme={theme}>
-              <SnackbarProvider>
-                <CssBaseline />
+              <CssBaseline />
 
-                <ResponsiveAppBar />
+              <ResponsiveAppBar />
 
-                <Outlet />
+              <Outlet />
 
-                <ViewCounter count={viewCount} />
-              </SnackbarProvider>
+              <ViewCounter count={viewCount} />
             </ThemeProvider>
           </ColorModeContext.Provider>
         </LocalizationProvider>
