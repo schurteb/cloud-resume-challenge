@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import { render, screen, waitFor } from '../test-utils';
 import WelcomeTitle from './WelcomeTitle';
 
@@ -7,8 +11,8 @@ describe('WelcomeTitle', () => {
 
         await waitFor(() => {
             const link = screen.getByRole('link');
-            expect(link).toHaveAttribute('href', 'https://thirdweb.com/');
-            expect(link).toHaveTextContent('thirdweb');
+            expect(link).toHaveAttribute('href', 'https://resume.schurteb.ch/');
+            expect(link).toHaveTextContent('Cloud Resume Challenge');
         });
     });
 
@@ -26,7 +30,7 @@ describe('WelcomeTitle', () => {
 
         await waitFor(() => {
             const link = screen.getByRole('link');
-            expect(link).toHaveTextContent('thirdweb');
+            expect(link).toHaveTextContent('Cloud Resume Challenge');
         });
     });
 

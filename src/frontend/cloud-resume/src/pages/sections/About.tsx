@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";

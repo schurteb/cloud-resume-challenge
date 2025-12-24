@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+#
+# SPDX-License-Identifier: MIT
+
 data "aws_iam_policy_document" "allow_access_from_cloudfront_oac" {
   statement {
     principals {

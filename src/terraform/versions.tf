@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+#
+# SPDX-License-Identifier: MIT
+
 terraform {
   backend "s3" {
     bucket         = "schurteb-cloud-resume-challenge-tfstate"

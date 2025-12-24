@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import * as React from 'react';
 import ColorModeContext from '../context/ColorModeContext';
 import { Box, FormControlLabel, styled, Switch } from '@mui/material';

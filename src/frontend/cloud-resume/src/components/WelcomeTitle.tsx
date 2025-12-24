@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import * as React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
@@ -8,7 +12,7 @@ export default function WelcomeTitle(props: any) {
 
     React.useEffect(() => {
         if (!props.linkText || props.linkText === "") {
-            setLinkText('thirdweb');
+            setLinkText('Cloud Resume Challenge');
             return;
         }
 
@@ -21,7 +25,7 @@ export default function WelcomeTitle(props: any) {
     return (
         <Trans t={t} i18nKey="WelcomeTitle" linkText={linkText}>
             {/*//@ts-ignore*/}
-            Welcome to <a href="https://thirdweb.com/">{{linkText}}</a>!
+            Welcome to <a href="https://resume.schurteb.ch/">{{linkText}}</a>!
         </Trans>
     );
   }

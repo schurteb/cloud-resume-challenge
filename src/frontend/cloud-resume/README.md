@@ -1,43 +1,111 @@
+<!--
+SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+
+SPDX-License-Identifier: MIT
+-->
+
+# Cloud Resume Frontend
+
+This is the frontend for the Cloud Resume Challenge, built with React, TypeScript, and Vite.
+
 ## Getting Started
 
-Create a project using this example:
+### Prerequisites
+
+- Node.js (v16+ recommended)
+- pnpm (preferred), npm, or yarn
+
+### Installation
+
+1. Navigate to the project directory:
 
 ```bash
-npx thirdweb create --template cra-typescript-starter
+cd src/frontend/cloud-resume
 ```
 
-You can start editing the page by modifying `src/index.tsx`. The page auto-updates as you edit the file.
-
-On `src/index.tsx`, you'll find our `ThirdwebProvider` wrapping your app, this is necessary for our hooks to work.
-
-On `src/index.js`, you'll find our `ThirdwebProvider` wrapping your app, this is necessary for our [hooks](https://portal.thirdweb.com/react) and
-[UI Components](https://portal.thirdweb.com/ui-components) to work.
-
-### Deploy to IPFS
-
-Deploy a copy of your application to IPFS using the following command:
+2. Install dependencies:
 
 ```bash
-yarn deploy
+pnpm install
+# or
+npm install
+# or
+yarn install
 ```
+
+### Development
+
+To start the development server with hot reloading:
+
+```bash
+pnpm dev
+# or
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the app.
+
+### Building for Production
+
+To build the app for production:
+
+```bash
+pnpm build
+# or
+npm run build
+# or
+yarn build
+```
+
+The output will be in the `build/` directory.
+
+### Preview Production Build
+
+To locally preview the production build:
+
+```bash
+pnpm preview
+# or
+npm run preview
+# or
+yarn preview
+```
+
+### Testing
+
+To run tests:
+
+```bash
+pnpm test
+# or
+npm test
+# or
+yarn test
+```
+
+## Project Structure
+
+- `src/` – Main source code (components, pages, context, styles, etc.)
+- `public/` – Static assets
+- `build/` – Production build output
+- `vite.config.ts` – Vite configuration
+- `tsconfig.json` – TypeScript configuration
+
+## Environment Variables
+
+You can set environment variables in `.env.development` and `.env.production` for different environments.
+
+(Adjust the command if using pnpm or npm.)
 
 ## Learn More
 
-To learn more about thirdweb, React and CRA, take a look at the following resources:
+- [Vite Documentation](https://vitejs.dev/)
+- [React Documentation](https://react.dev/)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
 
-- [thirdweb React Documentation](https://docs.thirdweb.com/react) - learn about our React SDK.
-- [thirdweb TypeScript Documentation](https://docs.thirdweb.com/react) - learn about our JavaScript/TypeScript SDK.
-- [thirdweb Portal](https://docs.thirdweb.com/react) - check our guides and development resources.
-- [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started) - learn about CRA features.
-- [React documentation](https://reactjs.org/) - learn React.
+## Useful Tools
 
-You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
-
-## Join our Discord!
-
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
-
-## Useful tools
-
-- SVG Path Editor [https://yqnn.github.io/svg-path-editor/](https://yqnn.github.io/svg-path-editor/)
-- JavaScript Key Code Playground [https://www.toptal.com/developers/keycode](https://www.toptal.com/developers/keycode)
+- [SVG Path Editor](https://yqnn.github.io/svg-path-editor/)
+- [JavaScript Key Code Playground](https://www.toptal.com/developers/keycode)
