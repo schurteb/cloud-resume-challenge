@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: MIT
 
 FILE="src/frontend/cloud-resume/pnpm-lock.yaml"
-HEADER="# SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger\n#\n# SPDX-License-Identifier: MIT"
+HEADER="# SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger\n#\n# SPDX-License-Identifier: MIT\n"
 
 grep -q "SPDX-License-Identifier" "$FILE"
 if [ $? -ne 0 ]; then
