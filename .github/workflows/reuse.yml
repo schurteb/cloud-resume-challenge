@@ -32,7 +32,7 @@ jobs:
           else
             git add src/frontend/cloud-resume/pnpm-lock.yaml
             git commit -m "chore: ensure SPDX header in pnpm-lock.yaml"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }} HEAD:${{ github.head_ref }}
+            git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/schurteb/cloud-resume-challenge.git" HEAD:${{ github.head_ref }}
           fi
 
   test:
