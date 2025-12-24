@@ -14,6 +14,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Make SPDX header script executable
+        run: chmod +x .github/scripts/ensure-spdx-header.sh
+
       - name: Ensure SPDX header in pnpm-lock.yaml
         run: .github/scripts/ensure-spdx-header.sh
 
