@@ -1,5 +1,5 @@
 {
-  "name": "web3-crowdfunding",
+  "name": "@schurteb/cloud-resume-challenge",
   "homepage": ".",
   "version": "0.1.0",
   "private": true,
@@ -43,7 +43,6 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ci": "vitest run --coverage",
-    "deploy": "pnpm build && npx thirdweb@latest upload build",
     "serve:local": "pnpm build && npx serve -p 1234 ./build"
   },
   "eslintConfig": {
