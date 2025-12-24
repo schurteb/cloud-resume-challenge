@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import { render, screen, waitFor, act } from './test-utils';
 import { vi } from 'vitest';
 import App from './App';

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+#
+# SPDX-License-Identifier: MIT
+
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Comment: benjamin.schurtenberger@gmail.com (0x0BF1AE3263AA6BE4)
 

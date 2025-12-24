@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 

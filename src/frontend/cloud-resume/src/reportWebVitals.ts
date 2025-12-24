@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import type { Metric } from 'web-vitals';
 
 const reportWebVitals = (onPerfEntry?: (metric: Metric) => void) => {

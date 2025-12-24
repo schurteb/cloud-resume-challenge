@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+#
+# SPDX-License-Identifier: MIT
+
 module "pipeline_authentication" {
   source = "./modules/pipeline-authentication"
 

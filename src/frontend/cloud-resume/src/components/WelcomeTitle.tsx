@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import * as React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 

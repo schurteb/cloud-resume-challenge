@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import { render, screen, waitFor } from '../test-utils';
 import WelcomeTitle from './WelcomeTitle';
 

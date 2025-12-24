@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+
+SPDX-License-Identifier: MIT
+-->
 
 # Cloud Resume Frontend
 

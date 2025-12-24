@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import { Color, createTheme, PaletteColor, PaletteMode, ThemeOptions } from "@mui/material";
 import { CommonColors, PaletteColorOptions, Theme, TypeAction, TypeText } from "@mui/material/styles";
 import { PaletteTonalOffset, ColorPartial, PaletteAugmentColorOptions, TypeDivider } from "@mui/material/styles/createPalette";

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+//
+// SPDX-License-Identifier: MIT
+
 import App from "./App";
 import "./styles/globals.css";
 import { createBrowserRouter } from "react-router-dom";

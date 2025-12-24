@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Benjamin Schurtenberger
+#
+# SPDX-License-Identifier: MIT
+
 Options -MultiViews
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
