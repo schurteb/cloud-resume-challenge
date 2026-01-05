@@ -2,40 +2,14 @@
 # SPDX-License-Identifier: CC0-1.0
 
 name: REUSE compliance check
-on: [push, pull_request]
 
-permissions:
-  contents: write # This is required for pushing changes back to the PR branch
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
 
 jobs:
-  ensure-spdx-header:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request != null
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Make SPDX header script executable
-        run: chmod +x .github/scripts/ensure-spdx-header.sh
-
-      - name: Ensure SPDX header in pnpm-lock.yaml
-        run: .github/scripts/ensure-spdx-header.sh
-
-      - name: Commit SPDX header if changed
-        run: |
-          git config --global user.name "dependabot[bot]"
-          git config --global user.email "dependabot[bot]@users.noreply.github.com"
-          if git diff --quiet; then
-            echo "No changes to commit."
-          else
-            git add src/frontend/cloud-resume/pnpm-lock.yaml
-            git commit -m "chore: ensure SPDX header in pnpm-lock.yaml"
-            git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/schurteb/cloud-resume-challenge.git" HEAD:${{ github.head_ref }}
-          fi
-
-  test:
+  ensure-reuse-compliance:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
