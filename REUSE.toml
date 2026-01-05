@@ -6,7 +6,8 @@ SPDX-PackageDownloadLocation = "https://github.com/schurteb/cloud-resume-challen
 # Apply license to computer-generated files.
 [[annotations]]
 path = [
-    "src/frontend/cloud-resume/pnpm-lock.yaml"
+    "src/frontend/cloud-resume/pnpm-lock.yaml",
+    "src/terraform/.terraform.lock.hcl"
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
