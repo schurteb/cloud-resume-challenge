@@ -2,4 +2,11 @@ version = 1
 SPDX-PackageName = "@schurteb/cloud-resume-challenge"
 SPDX-PackageSupplier = "Benjamin Schurtenberger"
 SPDX-PackageDownloadLocation = "https://github.com/schurteb/cloud-resume-challenge"
-annotations = []
+
+# Apply license to computer-generated files.
+[[annotations]]
+path = [
+    "src/frontend/cloud-resume/pnpm-lock.yaml"
+]
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0"
