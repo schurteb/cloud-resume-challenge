@@ -16,5 +16,12 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "daily"
+    groups:
+    # Specify a name for the group, which will be used in pull request titles and branch names
+      all-non-major-updates:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
     assignees:
       - "schurteb"
